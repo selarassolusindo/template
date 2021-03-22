@@ -163,12 +163,14 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
+                                    <?php if ($this->ion_auth->is_admin()) { ?>
                                     <li class="nav-item">
                                         <a href="<?php echo site_url(); ?>auth" class="nav-link <?php echo $this->uri->segment(1) == 'auth' ? 'active' : ''; ?>">
                                             <i class="fas fa-users-cog nav-icon"></i>
                                             <p>Users & Groups</p>
                                         </a>
                                     </li>
+                                    <?php } ?>
                                 </ul>
                             </li>
 
