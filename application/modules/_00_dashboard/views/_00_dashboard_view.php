@@ -291,7 +291,7 @@
         <script type="text/javascript">
             $(function () {
                 $('body').addClass('text-xs');
-                $('a').addClass('text-xs');
+                $('a').addClass('text-sm');
                 $('.btn').addClass('btn-sm');
                 $('.table').addClass('table-sm');
                 $('.form-control').addClass('form-control-sm');
