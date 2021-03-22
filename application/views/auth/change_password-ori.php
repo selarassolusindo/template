@@ -1,4 +1,4 @@
-<!-- <h1><?php echo lang('change_password_heading');?></h1> -->
+<h1><?php echo lang('change_password_heading');?></h1>
 
 <div id="infoMessage"><?php echo $message;?></div>
 
@@ -20,9 +20,6 @@
       </p>
 
       <?php echo form_input($user_id);?>
-      <p>
-          <?php echo form_submit('submit', lang('change_password_submit_btn'), array('class'=>'btn btn-primary'));?>
-          <a href="<?php echo site_url(); ?>" type="button" class="btn btn-secondary">Cancel</a>
-      </p>
+      <p><?php echo form_submit('submit', lang('change_password_submit_btn'));?></p>
 
 <?php echo form_close();?>

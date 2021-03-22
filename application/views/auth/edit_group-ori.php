@@ -1,4 +1,4 @@
-<!-- <h1><?php echo lang('edit_group_heading');?></h1> -->
+<h1><?php echo lang('edit_group_heading');?></h1>
 <p><?php echo lang('edit_group_subheading');?></p>
 
 <div id="infoMessage"><?php echo $message;?></div>
@@ -15,9 +15,6 @@
             <?php echo form_input($group_description);?>
       </p>
 
-      <p>
-          <?php echo form_submit('submit', lang('edit_group_submit_btn'), array('class'=>'btn btn-primary'));?>
-          <a href="<?php echo site_url(); ?>auth" type="button" class="btn btn-secondary">Cancel</a>
-      </p>
+      <p><?php echo form_submit('submit', lang('edit_group_submit_btn'));?></p>
 
 <?php echo form_close();?>

@@ -46,6 +46,20 @@
 
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <?php if ($this->session->userdata('user_id') != "") { ?>
+                            <a class="dropdown-item" href="<?php echo site_url(); ?>auth/change_password">Change Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?php echo site_url(); ?>auth/logout">Logout</a>
+                            <?php } else { ?>
+                            <a class="dropdown-item" href="<?php echo site_url(); ?>auth/login">Login</a>
+                            <?php }?>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                             <i class="fas fa-th-large"></i>
@@ -60,7 +74,7 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
                 <!-- Brand Logo -->
-                <a href="<?php echo base_url(); ?>assets/adminlte/index3.html" class="brand-link">
+                <a href="<?php echo site_url(); ?>" class="brand-link">
                     <img src="<?php echo base_url(); ?>assets/adminlte/dist/img/AdminLTELogo.png"
                     alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
@@ -85,35 +99,103 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="#" class="nav-link active">
+                            <li class="nav-item">
+                                <a href="<?php echo site_url(); ?>" class="nav-link <?php echo ($this->uri->segment(1) == '' ? 'active' : ''); ?>">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                    Dashboard
+                                    DASHBOARD
+                                    </p>
+                                </a>
+                            </li>
+
+                            <?php if ($this->ion_auth->logged_in()) { ?>
+
+                            <!-- setup -->
+                            <li class="nav-item has-treeview
+                                <?php
+                                switch ($this->uri->segment(1)) {
+                                    case 'auth':
+                                    // case '_35_alamat':
+                                    // case '_36_warganegara':
+                                    // case '_37_hubungan':
+                                    // case '_38_status':
+                                    // case '_39_pekerjaan':
+                                    // case '_40_pendidikan':
+                                    // case '_41_agama':
+                                    // case '_42_provinsi':
+                                    // case '_43_kabupaten':
+                                    // case '_44_kecamatan':
+                                    // case '_45_desa':
+                                        echo 'menu-open';
+                                        break;
+                                    default:
+                                        echo '';
+                                }
+                                ?>
+                            ">
+                                <a href="#" class="nav-link
+                                    <?php
+                                    switch ($this->uri->segment(1)) {
+                                        case 'auth':
+                                        // case '_35_alamat':
+                                        // case '_36_warganegara':
+                                        // case '_37_hubungan':
+                                        // case '_38_status':
+                                        // case '_39_pekerjaan':
+                                        // case '_40_pendidikan':
+                                        // case '_41_agama':
+                                        // case '_42_provinsi':
+                                        // case '_43_kabupaten':
+                                        // case '_44_kecamatan':
+                                        // case '_45_desa':
+                                            echo 'active';
+                                            break;
+                                        default:
+                                            echo '';
+                                    }
+                                    ?>
+                                ">
+                                    <i class="fas fa-cog nav-icon"></i>
+                                    <p>
+                                    SETUP
                                     <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url(); ?>assets/adminlte/index.html" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Dashboard v1</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url(); ?>assets/adminlte/index2.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Dashboard v2</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url(); ?>assets/adminlte/index3.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Dashboard v3</p>
+                                        <a href="<?php echo site_url(); ?>auth" class="nav-link <?php echo $this->uri->segment(1) == 'auth' ? 'active' : ''; ?>">
+                                            <i class="fas fa-users-cog nav-icon"></i>
+                                            <p>Users & Groups</p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
+
+                            <?php } ?>
+
+                            <!-- login or logout -->
+                            <?php if ($this->session->userdata('user_id') != "") { ?>
+                            <!-- logout -->
+                            <li class="nav-item">
+                                <a href="<?php echo site_url(); ?>auth/logout" class="nav-link">
+                                    <i class="fas fa-sign-out-alt nav-icon"></i>
+                                    <p>
+                                    LOGOUT
+                                    </p>
+                                </a>
+                            </li>
+                            <?php } else { ?>
+                            <!-- login -->
+                            <li class="nav-item">
+                                <a href="<?php echo site_url(); ?>auth/login" class="nav-link">
+                                    <i class="fas fa-sign-in-alt nav-icon"></i>
+                                    <p>
+                                    LOGIN
+                                    </p>
+                                </a>
+                            </li>
+                            <?php } ?>
+
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -131,7 +213,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Dashboard</h1>
+                                <h1 class="m-0 text-dark"><?php echo $_caption; ?></h1>
                             </div><!-- /.col -->
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -208,11 +290,12 @@
 
         <script type="text/javascript">
             $(function () {
+                $('body').addClass('text-xs');
+                $('a').addClass('text-xs');
                 $('.btn').addClass('btn-sm');
                 $('.table').addClass('table-sm');
                 $('.form-control').addClass('form-control-sm');
                 $('.input-group').addClass('input-group-sm');
-                $('body').addClass('text-xs');
                 $('.main-header').addClass('text-xs');
                 $('.main-sidebar').removeClass('sidebar-dark-primary');
                 $('.main-sidebar').addClass('sidebar-light-lightblue text-xs');
