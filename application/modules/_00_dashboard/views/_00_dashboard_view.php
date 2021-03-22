@@ -52,11 +52,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             <?php if ($this->session->userdata('user_id') != "") { ?>
-                            <a class="dropdown-item" href="<?php echo site_url(); ?>auth/change_password">Change Password</a>
+                            <a class="dropdown-item text-xs" href="<?php echo site_url(); ?>auth/change_password">Change Password</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo site_url(); ?>auth/logout">Logout</a>
+                            <a class="dropdown-item text-xs" href="<?php echo site_url(); ?>auth/logout">Logout</a>
                             <?php } else { ?>
-                            <a class="dropdown-item" href="<?php echo site_url(); ?>auth/login">Login</a>
+                            <a class="dropdown-item text-xs" href="<?php echo site_url(); ?>auth/login">Login</a>
                             <?php }?>
                         </div>
                     </li>
@@ -86,11 +86,12 @@
 
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
+                        <!-- <div class="image">
                             <img src="<?php echo base_url(); ?>assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                        </div>
+                        </div> -->
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <!-- <a href="#" class="d-block">Alexander Pierce</a> -->
+                            <a href="#" class="d-block"><?php echo $this->ion_auth->logged_in() ? $this->ion_auth->user()->row()->first_name . ' - ' . $this->ion_auth->user()->row()->username : ''; ?></a>
                         </div>
                     </div>
 
@@ -291,7 +292,7 @@
         <script type="text/javascript">
             $(function () {
                 $('body').addClass('text-xs');
-                $('a').addClass('text-sm');
+                // $('a').addClass('text-sm');
                 $('.btn').addClass('btn-sm');
                 $('.table').addClass('table-sm');
                 $('.form-control').addClass('form-control-sm');
